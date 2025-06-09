@@ -1,0 +1,959 @@
+/* ======================================
+   Дополнительные стили для AKS-Media
+====================================== */
+
+/* Изменение цветовой схемы для Media-страницы */
+:root {
+    --media-accent: #FFAA80;     /* Акцентный оранжевый */
+    --media-accent-light: #FF8C3F; /* Светлее акцентного */
+    --media-highlight: #005BBB;   /* Дополнительный синий */
+    --media-highlight-light: #2E7ED3; /* Светлее дополнительного */
+}
+
+/* Стилизация карточек блогеров */
+.bloggers {
+    position: relative;
+    background-color: var(--color-secondary);
+    overflow: hidden;
+}
+
+.bloggers::before {
+    content: '';
+    position: absolute;
+    top: -150px;
+    right: -150px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255, 107, 0, 0.1), transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+/* Стили для сетки блогеров - 2 в строке */
+.blogger-card-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+/* Для мобильных устройств переключаемся на одну колонку */
+@media (max-width: 768px) {
+    .blogger-card-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.blogger-card {
+    background-color: var(--color-card);
+    border-radius: var(--border-radius);
+    margin-bottom: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    max-width: 100%;
+}
+
+.blogger-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+.blogger-header {
+    background: linear-gradient(90deg, var(--media-accent), var(--media-highlight));
+    padding: 10px 15px;
+}
+
+.blogger-header h3 {
+    color: white;
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Центрирование логотипов по вертикали */
+.blogger-card .blogger-content {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    align-items: center;
+}
+
+.blogger-image {
+    flex: 0 0 100px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.blogger-image img {
+    max-height: 100px;
+    width: auto;
+    object-fit: contain;
+    transition: transform 0.5s ease;
+    margin: auto;
+    display: block;
+    max-width: 90%;
+}
+
+.blogger-card:hover .blogger-image img {
+    transform: scale(1.05);
+}
+
+.blogger-description {
+    flex: 1;
+    padding: 15px;
+}
+
+.blogger-description p {
+    color: var(--color-text-secondary);
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+}
+
+/* Настройка сетки социальных сетей */
+.blogger-socials {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+    margin-bottom: 15px;
+    padding: 0 15px;
+}
+
+.social-item h4 {
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    margin-bottom: 3px;
+}
+
+.social-item h4 i {
+    margin-right: 8px;
+    color: var(--media-accent);
+}
+
+.social-item a {
+    color: var(--color-text-secondary);
+    transition: color var(--transition-speed) ease;
+    font-size: 0.8rem;
+}
+
+.social-item a:hover {
+    color: var(--media-accent);
+}
+
+/* Настройка кнопок */
+.blogger-details-btn, .view-statistics {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    padding: 8px 16px;
+}
+
+/* Настройка блока подробностей */
+.blogger-details {
+    background-color: rgba(0, 0, 0, 0.08);
+    padding: 15px;
+    display: none;
+    transition: all 0.3s ease;
+}
+
+.blogger-details.active {
+    display: block;
+}
+
+.blogger-details h3 {
+    margin-bottom: 10px;
+    color: var(--media-accent);
+    font-size: 1.1rem;
+}
+
+.blogger-benefits {
+    padding-left: 25px;
+}
+
+.blogger-benefits li, .blogger-features li {
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+}
+
+.blogger-benefits h4 {
+    margin-bottom: 3px;
+    color: var(--color-text);
+    font-size: 1rem;
+}
+
+.blogger-benefits p, .blogger-features p {
+    color: var(--color-text-secondary);
+    font-size: 0.85rem;
+}
+
+.blogger-features {
+    list-style: none;
+    padding-left: 5px;
+}
+
+.blogger-features i {
+    color: var(--media-accent);
+    margin-right: 10px;
+}
+
+.section-footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 30px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: var(--border-radius);
+}
+
+.section-footer p {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+/* Корректировка для мобильных устройств */
+@media (max-width: 992px) {
+    .blogger-content {
+        flex-direction: column;
+    }
+
+    .blogger-image {
+        height: auto;
+        padding: 10px;
+        max-height: 120px;
+        width: 100%;
+    }
+}
+
+/* Пакеты рекламы - заготовка для будущего добавления */
+.packages {
+    background-color: var(--color-primary);
+}
+
+.packages-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.tab-btn {
+    padding: 12px 25px;
+    background-color: var(--color-card);
+    border: none;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all var(--transition-speed) ease;
+}
+
+.tab-btn:first-child {
+    border-radius: var(--border-radius) 0 0 var(--border-radius);
+}
+
+.tab-btn:last-child {
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+}
+
+.tab-btn.active {
+    background-color: var(--media-accent);
+    color: white;
+}
+
+/* Всплывающее окно статистики */
+.statistics-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--transition-speed) ease, visibility var(--transition-speed) ease;
+}
+
+.statistics-popup.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.statistics-popup-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(18, 16, 14, 0.9);
+    backdrop-filter: blur(5px);
+}
+
+.statistics-popup-content {
+    position: relative;
+    background-color: var(--color-card);
+    border-radius: var(--border-radius);
+    width: 90%;
+    max-width: 900px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    transform: translateY(20px);
+    transition: transform var(--transition-speed) ease;
+    z-index: 1;
+}
+
+.statistics-popup.active .statistics-popup-content {
+    transform: translateY(0);
+}
+
+.statistics-popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.statistics-title {
+    font-size: 1.5rem;
+    margin: 0;
+    color: var(--media-accent);
+}
+
+.statistics-popup-close {
+    background: none;
+    border: none;
+    color: var(--color-text-secondary);
+    font-size: 1.25rem;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color var(--transition-speed) ease;
+}
+
+.statistics-popup-close:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--color-text);
+}
+
+.statistics-popup-body {
+    padding: 25px;
+}
+
+.statistics-images {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.statistics-images img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--border-radius);
+    transition: transform var(--transition-speed) ease;
+}
+
+.statistics-images img:hover {
+    transform: scale(1.02);
+}
+
+.contact-popup-content {
+    position: relative;
+    background-color: var(--color-card);
+    border-radius: var(--border-radius);
+    width: 90%;
+    max-width: 500px;
+    padding: 30px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    transform: translateY(20px);
+    transition: transform var(--transition-speed) ease;
+    z-index: 1;
+    border: none; /* Remove any unexpected borders */
+}
+
+/* Make sure popup form matches other pages */
+.contact-popup .contact-form-container {
+    background-color: transparent;
+    padding: 0;
+    box-shadow: none;
+    border-left: none; /* Remove any colored border */
+}
+
+/* Update the header styling to match */
+.contact-popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 15px;
+}
+
+/* Обновленные стили для контактной формы */
+.contact-form-container {
+    background-color: var(--color-card);
+    border-radius: var(--border-radius);
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    border-left: 4px solid var(--media-accent);
+}
+
+.contact-form .btn-primary,
+.telegram-btn {
+    background: linear-gradient(135deg, var(--media-accent), var(--media-highlight));
+    color: white;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.contact-form .btn-primary:hover,
+.telegram-btn:hover {
+    background: linear-gradient(135deg, var(--media-accent-light), var(--media-highlight-light));
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(255, 107, 0, 0.3);
+}
+
+/* Адаптивная верстка */
+@media (max-width: 992px) {
+    .blogger-content {
+        flex-direction: column;
+    }
+
+    .blogger-image {
+        height: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    .statistics-popup-content {
+        width: 95%;
+        max-height: 80vh;
+    }
+
+    .statistics-images {
+        grid-template-columns: 1fr;
+    }
+
+    .blogger-socials {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Преимущества на всю ширину */
+.about-content {
+    width: 100%;
+}
+
+.about-text {
+    width: 100%;
+}
+
+.service-list-wrapper.full-width {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Force 3 columns */
+    gap: 25px;
+    margin-top: 40px;
+    width: 100%;
+}
+
+.service-list-wrapper.full-width .service-list-item {
+    margin-bottom: 25px;
+    height: 100%;
+}
+
+@media (max-width: 992px) {
+    .service-list-wrapper.full-width {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
+    }
+}
+
+@media (max-width: 576px) {
+    .service-list-wrapper.full-width {
+        grid-template-columns: 1fr; /* 1 column on mobile */
+    }
+}
+
+/* Переопределение кнопок просмотра кейсов */
+.cases-slider-container {
+    position: relative;
+    padding: 0 60px;
+    margin-bottom: 30px;
+}
+
+.cases-slider {
+    overflow: hidden;
+    position: relative;
+}
+
+.slider-arrow.side-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--media-accent), var(--media-highlight));
+    color: white;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+    font-size: 1.2rem;
+    z-index: 10;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.slider-arrow.side-arrow.prev {
+    left: 0;
+}
+
+.slider-arrow.side-arrow.next {
+    right: 0;
+}
+
+.slider-arrow.side-arrow:hover {
+    background: linear-gradient(135deg, var(--media-accent-light), var(--media-highlight-light));
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 15px rgba(255, 107, 0, 0.3);
+}
+
+.slider-indicators {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.slider-dots {
+    display: flex;
+    gap: 10px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--color-muted);
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+}
+
+.dot.active, .dot:hover {
+    background-color: var(--media-accent);
+    transform: scale(1.2);
+}
+
+/* Адаптивность для кейсов и стрелок */
+@media (max-width: 768px) {
+    .cases-slider-container {
+        padding: 0 40px;
+    }
+
+    .slider-arrow.side-arrow {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .cases-slider-container {
+        padding: 0 30px;
+    }
+
+    .slider-arrow.side-arrow {
+        width: 30px;
+        height: 30px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Стили для всплывающего окна с подробной информацией о блогерах */
+.blogger-detail-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2200;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--transition-speed) ease, visibility var(--transition-speed) ease;
+}
+
+.blogger-detail-popup.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.blogger-detail-popup-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(18, 16, 14, 0.9);
+    backdrop-filter: blur(5px);
+    z-index: 0;
+}
+
+.blogger-detail-popup-content {
+    position: relative;
+    background-color: var(--color-secondary);
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    width: 100%;
+    height: 95vh;
+    max-height: 95vh;
+    padding: 30px;
+    box-shadow: 0 -15px 40px rgba(0, 0, 0, 0.3);
+    overflow-y: auto;
+    z-index: 1;
+    transform: translateY(100%);
+    transition: transform var(--transition-speed) ease;
+}
+
+.blogger-detail-popup.active .blogger-detail-popup-content {
+    transform: translateY(0);
+}
+
+.blogger-detail-popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 30px;
+}
+
+.blogger-detail-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.blogger-detail-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.blogger-detail-name {
+    font-size: 1.6rem;
+    margin-bottom: 6px;
+    color: var(--color-text);
+}
+
+.blogger-tags {
+    display: flex;
+    gap: 10px;
+}
+
+.tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 30px;
+    font-size: 0.8rem;
+    color: white;
+}
+
+.tag.lifestyle {
+    background-color: var(--media-accent);
+}
+
+.tag.travel {
+    background-color: var(--media-highlight);
+}
+
+.tag.auto {
+    background-color: #3498db;
+}
+
+.tag.moto {
+    background-color: #e74c3c;
+}
+
+.blogger-detail-popup-close {
+    background: none;
+    border: none;
+    color: var(--color-text-secondary);
+    font-size: 1.25rem;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all var(--transition-speed) ease;
+}
+
+.blogger-detail-popup-close:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--color-text);
+}
+
+.blogger-detail-popup-body {
+    color: var(--color-text-secondary);
+}
+
+.blogger-detail-statistics {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-card);
+    padding: 12px;
+    border-radius: var(--border-radius);
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+}
+
+.stat-value {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--media-accent);
+}
+
+.blogger-detail-description {
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.blogger-detail-description h3 {
+    color: var(--color-text);
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.blogger-detail-description h4 {
+    color: var(--media-accent);
+    margin-bottom: 10px;
+}
+
+.blogger-detail-description ol,
+.blogger-detail-description ul {
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+
+.blogger-detail-description li {
+    margin-bottom: 15px;
+}
+
+.blogger-detail-reach {
+    margin: 40px 0;
+}
+
+.blogger-detail-reach h3 {
+    margin-bottom: 20px;
+    color: var(--color-text);
+}
+
+.reach-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 12px;
+}
+
+.reach-item {
+    position: relative;
+    padding-top: 177.78%; /* Соотношение 9:16 для сторис */
+    background-color: var(--color-card);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.reach-item img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.reach-count {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    color: white;
+}
+
+.blogger-socials-detailed {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.blogger-social-detailed {
+    background-color: var(--color-card);
+    padding: 15px;
+    border-radius: var(--border-radius);
+    transition: all var(--transition-speed) ease;
+}
+
+.blogger-social-detailed:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.blogger-social-detailed h4 {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    color: var(--color-text);
+    font-size: 0.95rem;
+}
+
+.blogger-social-detailed h4 i {
+    margin-right: 10px;
+    color: var(--media-accent);
+    font-size: 1.1rem;
+}
+
+.blogger-social-detailed p {
+    margin-bottom: 5px;
+    color: var(--color-text-secondary);
+    font-size: 0.8rem;
+}
+
+.blogger-social-detailed a {
+    color: var(--media-accent);
+    transition: color var(--transition-speed) ease;
+}
+
+.blogger-social-detailed a:hover {
+    color: var(--media-accent-light);
+}
+
+.blogger-social-detailed .social-stats {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.social-stat {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.social-stat-label {
+    font-size: 0.8rem;
+}
+
+.social-stat-value {
+    font-weight: 600;
+    color: var(--media-accent);
+    font-size: 0.9rem;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+    .blogger-detail-popup-content {
+        padding: 20px 15px;
+    }
+
+    .blogger-detail-info {
+        gap: 15px;
+    }
+
+    .blogger-detail-avatar {
+        width: 50px;
+        height: 50px;
+    }
+
+    .blogger-detail-name {
+        font-size: 1.4rem;
+    }
+
+    .blogger-detail-statistics {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-item {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 15px;
+    }
+
+    .stat-label {
+        margin-bottom: 0;
+    }
+
+    .stat-value {
+        font-size: 1.5rem;
+    }
+
+    .reach-gallery {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    }
+}
+
+/* Добавьте эти стили в конец файла styles.css или media-styles.css */
+
+.cases-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2050;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--transition-speed) ease, visibility var(--transition-speed) ease;
+}
+
+.cases-popup.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Стили для элемента "Детали кейса" */
+.details-popup {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2000;
+    display: none; /* Явно устанавливаем display: none */
+    opacity: 0;
+    visibility: hidden;
+}
+
+.details-popup.active {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+}
